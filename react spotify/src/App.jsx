@@ -1,7 +1,23 @@
+import { useState } from "react";
 import "./App.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
+  const [favorites, setFavorites] = useState([]);
+  const toggleFavorite = (song) => {
+
+  if (favorites.includes(song)) {
+
+    setFavorites(
+      favorites.filter(item => item !== song)
+    );
+
+  } else {
+
+    setFavorites([...favorites, song]);
+
+  }
+};
   return (
     <div className="app">
       <header className="topbar">
@@ -95,66 +111,96 @@ function App() {
 
         <main className="main-content">
           <div className="content-wrapper">
+          <h2 className="section-title">Favourite Songs</h2>
 
-            {/* Trending Songs */}
+<div className="card-row">
+
+  {favorites.length === 0 ? (
+    <p>No favourites yet</p>
+  ) : (
+    favorites.map((song,index) => (
+      <div className="music-card" key={index}>
+        <h4>{song}</h4>
+      </div>
+    ))
+  )}
+
+</div>  
 
             <h2 className="section-title">
               Trending Songs
             </h2>
-
             <div className="card-row">
-
               <div className="music-card">
-                <img src="/sptify-8.jpg" alt="" />
+                <img src="/images/sptify-8.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>Sajini</h4>
-                <p>Arijit Singh</p>
+                <button className="fav-btn" onClick={() => toggleFavorite("Sajini")}>
+  {favorites.includes("Sajini") ? "-" : "+"}
+</button>
+<p>Arijit Singh</p>
+
               </div>
 
               <div className="music-card">
-                <img src="/spotify-1.png" alt="" />
+                <img src="/images/spotify-1.png" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>No One Noticed</h4>
-                <p>The Marias</p>
+                <button className="fav-btn" onClick={() => toggleFavorite("No one noticed")}>
+  {favorites.includes("No one noticed") ? "-" : "+"}
+</button>
+             <p>The Marias</p>
               </div>
 
               <div className="music-card">
-                <img src="/spotify-3.jpg" alt="" />
+                <img src="/images/spotify-3.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>Sitaare</h4>
+                <button className="fav-btn" onClick={() => toggleFavorite("Sitaare")}>
+  {favorites.includes("Sitaare") ? "-" : "+"}
+</button>
                 <p>Arijit Singh</p>
               </div>
 
               <div className="music-card">
-                <img src="/spotify-2.jpg" alt="" />
+                <img src="/images/spotify-2.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>Photograph</h4>
+                <button className="fav-btn" onClick={() => toggleFavorite("Photograph")}>
+  {favorites.includes("Photograph") ? "-" : "+"}
+</button>
                 <p>Ed Sheeran</p>
               </div>
 
               <div className="music-card">
-                <img src="/spotify-4.jpg" alt="" />
+                <img src="/images/spotify-4.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>Lag Jaa Gale</h4>
+                <button className="fav-btn" onClick={() => toggleFavorite("Lag Jaa Gale")}>
+{favorites.includes("Lag Jaa Gale") ? "-" : "+"}
+</button>
                 <p>Lata Mangeshkar</p>
               </div>
 
               <div className="music-card">
-                <img src="/real-5.jpg" alt="" />
+                <img src="/images/real-5.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>I Think They Call This Love</h4>
+                <button className="fav-btn" onClick={() => toggleFavorite("I Think They Call This Love")}>
+  {favorites.includes("I Think They Call This Love") ? "-" : "+"}
+</button>
                 <p>Matthew Ifield</p>
               </div>
 
@@ -169,7 +215,7 @@ function App() {
             <div className="card-row">
 
               <div className="music-card artist-card">
-                <img src="/Arijit singh.jpg" alt="" />
+                <img src="/images/Arijit singh.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
@@ -178,7 +224,7 @@ function App() {
               </div>
 
               <div className="music-card artist-card">
-                <img src="/pritam.jpg" alt="" />
+                <img src="/images/pritam.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
@@ -187,7 +233,7 @@ function App() {
               </div>
 
               <div className="music-card artist-card">
-                <img src="/shreya goshal.jpg" alt="" />
+                <img src="/images/shreya goshal.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
@@ -196,11 +242,28 @@ function App() {
               </div>
 
               <div className="music-card artist-card">
-                <img src="/lana del ray.jpg" alt="" />
+                <img src="/images/lana del ray.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>Lana Del Ray</h4>
+                <p>Artist</p>
+              </div>
+
+              <div className="music-card artist-card">
+                <img src="/images/sunidhi chauhan.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <h4>Sunidhi chauhan</h4>
+                <p>Artist</p>
+              </div>
+              <div className="music-card artist-card">
+                <img src="/images/sonu nigam.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <h4>Sonu Nigam</h4>
                 <p>Artist</p>
               </div>
 
@@ -215,7 +278,7 @@ function App() {
             <div className="card-row">
 
               <div className="album-card">
-                <img src="/Kabir_Singh.jpg" alt="" />
+                <img src="/images/Kabir_Singh.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
@@ -224,7 +287,7 @@ function App() {
               </div>
 
               <div className="album-card">
-                <img src="/divide.jpg" alt="" />
+                <img src="/images/divide.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
@@ -233,13 +296,41 @@ function App() {
               </div>
 
               <div className="album-card">
-                <img src="/arijit album.jpg" alt="" />
+                <img src="/images/arijit album.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <h4>Best of Arijit Singh</h4>
                 <p>Arijit Singh</p>
               </div>
+
+              <div className="album-card">
+                <img src="/images/proof.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <h4>Proof</h4>
+                <p>BTS</p>
+              </div>
+
+              <div className="album-card">
+                <img src="/images/kishor da.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <h4>Kishor Da Remix</h4>
+                <p>Kishor kumar</p>
+              </div>
+
+              <div className="album-card">
+                <img src="/images/you never walk alone.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <h4>You Never Walk Alone</h4>
+                <p>BTS</p>
+              </div>
+
 
             </div>
 
@@ -252,7 +343,7 @@ function App() {
             <div className="card-row">
 
               <div className="radio-card">
-                <img src="/it.jpg" alt="" />
+                <img src="/images/it.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
@@ -260,12 +351,46 @@ function App() {
               </div>
 
               <div className="radio-card">
-                <img src="/en.jpg" alt="" />
+                <img src="/images/en.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <p>With A.R Rahman and more</p>
               </div>
+
+              
+              <div className="radio-card">
+                <img src="/images/kishor.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <p>Kishor Kumar </p>
+              </div>
+
+              <div className="radio-card">
+                <img src="/images/KK.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <p>K.K </p>
+              </div>
+
+              <div className="radio-card">
+                <img src="/images/alka.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <p> Alka Yagnik</p>
+              </div>
+              
+              <div className="radio-card">
+                <img src="/images/en (1).jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <p> Billi Elise</p>
+              </div>
+
 
             </div>
 
@@ -278,7 +403,7 @@ function App() {
             <div className="card-row">
 
               <div className="chart-card">
-                <img src="/global.jpg" alt="" />
+                <img src="/images/global.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
@@ -286,11 +411,36 @@ function App() {
               </div>
 
               <div className="chart-card">
-                <img src="/india.jpg" alt="" />
+                <img src="/images/india.jpg" alt="" />
                 <button className="play-btn">
                   <i className="fa-solid fa-play"></i>
                 </button>
                 <p>Top Songs India</p>
+              </div>
+
+              <div className="chart-card">
+                <img src="/images/top 50 global.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <p>Top 50 global</p>
+              </div>
+                 
+                 <div className="chart-card">
+                <img src="/images/top 50 india.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <p>Top 50 India</p>
+              </div>
+              
+
+              <div className="chart-card">
+                <img src="/images/viral 50 global.jpg" alt="" />
+                <button className="play-btn">
+                  <i className="fa-solid fa-play"></i>
+                </button>
+                <p>Viral 50 global</p>
               </div>
 
             </div>
